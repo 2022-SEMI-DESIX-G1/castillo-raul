@@ -47,6 +47,11 @@ input {
     letter-spacing: 1px;
     line-height: 20px;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover{
+    background-color: #375a6c;
 }
 
 #cards {
@@ -58,10 +63,17 @@ input {
 
 .card {
     border-radius: 5px;
-    margin: 30px;
+    margin: 35px;
     padding: 30px;
     background-color: #a1afba;
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -15px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.card:hover{
+    transform: scale(1.2);
+    background-color: #2b4c5d;
 }
 
 h3 {

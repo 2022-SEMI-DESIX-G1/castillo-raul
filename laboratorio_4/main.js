@@ -23,10 +23,18 @@ function createCard(e) {
     for (let i = 0; i < arrNumbers.length; i++) {
       let card = document.createElement("div");
       let title = document.createElement("h3");
+      card.setAttribute("id", i);
       card.classList.add("card");
       title.innerText = arrNumbers[i];
       card.appendChild(title);
       cardContainer.appendChild(card);
+
+      card.addEventListener("click", () => {
+        const response = confirm(`¿ Deseas eliminar esta tarjeta ?`);
+        if (response) {
+          deleteCard(i);
+        }
+      });
     }
   }
 }
@@ -41,4 +49,9 @@ const generateFibonacci = (length, array = [0, 1]) => {
   }
 
   return array;
+};
+
+const deleteCard = (element) => {
+  const card = document.getElementById(element);
+  cardContainer.removeChild(card);
 };
