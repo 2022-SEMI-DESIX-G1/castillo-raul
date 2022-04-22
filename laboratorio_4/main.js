@@ -1,20 +1,34 @@
 const input = document.getElementById("number-input");
 const submitButton = document.getElementById("submit");
+const cardContainer = document.getElementById("cards");
 
 submitButton.addEventListener("click", createCard);
 
 function createCard(e) {
   e.preventDefault();
 
+  while (cardContainer.firstChild) {
+    cardContainer.removeChild(cardContainer.firstChild);
+  }
+
+  const length = input.value;
+
   let arrNumbers = [];
 
-  if (input.value !== "") {
-    const length = input.value;
-
+  if (length > 0) {
     arrNumbers = generateFibonacci(length);
   }
 
-  console.log(arrNumbers);
+  if (arrNumbers.length > 0) {
+    for (let i = 0; i < arrNumbers.length; i++) {
+      let card = document.createElement("div");
+      let title = document.createElement("h3");
+      card.classList.add("card");
+      title.innerText = arrNumbers[i];
+      card.appendChild(title);
+      cardContainer.appendChild(card);
+    }
+  }
 }
 
 const generateFibonacci = (length, array = [0, 1]) => {
