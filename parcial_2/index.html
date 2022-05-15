@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio #6</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <!-- Estilos -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img alt="logo" src="https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png" />
+        </div>
+        <section class="card">
+            <form id="pokemon-finder-form">
+                <h1>Buscador de pokemones</h1>
+                <p>Busca desde pokemones hasta las habilidades de los mismos.</p>
+                <div class="wrapper">
+                    <label for="pokemon-finder-query">Buscar</label>
+                    <input id="pokemon-finder-query" type="text">
+
+                    <label for="pokemon-finder-search-type">Tipo de búsqueda</label>
+
+                    <select id="pokemon-finder-search-type">
+                        <option value="pokemon">Por pokemon</option>
+                        <option value="ability">Por habilidad</option>
+                    </select>
+                </div>
+                <div class="form-bottom">
+                    <button id="btn-clean" type="button" class="hide">Limpiar</button>
+                    <button type="submit">Buscar</button>
+                </div>
+            </form>
+        </section>
+        <section id="pokemon-finder-response" class="card hide"></section>
+    </div>
+
+    <script src="utils.js"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
