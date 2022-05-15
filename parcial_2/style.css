@@ -1,0 +1,169 @@
+:root{
+  --background-color: #031926;
+  --background-form: #f7f9f6;
+  --background-input: #e8e8e8;  
+  --background-btn: #1ba5f4;
+  --black: 900;
+  --bold: 700;
+  --medium: 500;
+  --regular: 400;
+  --light: 300;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;  
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background: var(--background-color);
+}
+
+.container {
+  margin: 0 26rem;
+}
+
+.logo-container{
+  display: flex;
+  justify-content: center;  
+  padding: 4rem 0 0;
+}
+
+.logo-container img{  
+  position: absolute;
+  top: 1.9rem;
+  z-index: 1;
+}
+
+.card {
+  background-color: var(--background-form);
+  margin: 2rem 0 0;  
+  padding: 2rem 3rem 2rem;
+  border-radius: 0.3rem;
+}
+
+.card:first-of-type{  
+  padding-bottom: 4rem;
+}
+
+h1{
+  margin: 0.4rem 0 0.9rem;
+}
+
+#title-card{
+  font-weight: var(--black);
+  margin: 0 0 1.5rem;
+  text-transform: capitalize;
+}
+
+h3 {
+  font-size: 1rem;
+  font-weight: var(--bold);
+  margin: 0 0 0.3rem;
+}
+
+p {
+  font-size: 0.8rem;
+  font-weight: var(--regular);
+}
+
+a {
+  text-decoration: none;
+}
+
+.wrapper{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 0.3rem 0.5rem;
+}
+
+label{
+  font-size: 0.8rem ;
+  font-weight: var(--bold);
+  align-self: end;
+}
+
+input, select{
+  border-style: none;
+  background-color: var(--background-input);
+  padding: 0.4rem 0.4rem;
+  border-radius: 0.3rem;  
+  font-size: 0.8rem;
+  font-weight: var(--medium);
+}
+
+#pokemon-finder-query{
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.form-bottom {
+  position: relative;
+}
+
+button {
+  color: #fff;
+  font-weight: var(--bold);  
+  margin-top: 1.5rem;
+  padding: 0.4rem 2rem;
+  background-color: var(--background-btn);
+  border-radius: 0.3rem;
+  border-style: none;   
+  font-size: 0.8rem;
+  cursor: pointer;  
+}
+
+#btn-clean{
+  position: absolute;
+  left:0;
+}
+
+button[type="submit"]{
+  position: absolute;
+  right: 0;
+}
+
+.clip-wrapper{
+  position: relative;
+  grid-column: 1;
+  bottom: 20%; 
+}
+
+.clip {  
+  position: absolute;
+  left: -5%;
+}
+
+.clip:nth-of-type(2) {   
+  left: 10%;
+} 
+
+.clip > img {  
+  width: 3rem;
+}
+
+ul {
+  position: relative;
+}
+
+li {
+  position: inherit;
+  left: 9%;
+  text-transform: capitalize;
+  font-size: 0.85rem;
+  font-weight: var(--regular);
+  align-items: flex-end;
+}
+
+svg {
+  position: absolute;
+  margin-left: 0.2rem;
+  align-self: flex-end;
+}
+
+.hide{
+  display: none;
+}
