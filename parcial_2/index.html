@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Laboratorio #6</title>
+    <title>PokeApi - Raul Castillo</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,22 +23,22 @@
         </div>
         <section class="card">
             <form id="pokemon-finder-form">
-                <h1>Buscador de pokemones</h1>
-                <p>Busca desde pokemones hasta las habilidades de los mismos.</p>
+                <h1>Pokemon Finder</h1>
+                <p>Search from pokemons to their abilities.</p>
                 <div class="wrapper">
-                    <label for="pokemon-finder-query">Buscar</label>
+                    <label id="pokemon-finder-query-label" for="pokemon-finder-query">Pokemon</label>
                     <input id="pokemon-finder-query" type="text">
 
-                    <label for="pokemon-finder-search-type">Tipo de búsqueda</label>
+                    <label for="pokemon-finder-search-type">Search Type</label>
 
                     <select id="pokemon-finder-search-type">
-                        <option value="pokemon">Por pokemon</option>
-                        <option value="ability">Por habilidad</option>
+                        <option value="pokemon">By pokemon</option>
+                        <option value="ability">By ability</option>
                     </select>
                 </div>
                 <div class="form-bottom">
-                    <button id="btn-clean" type="button" class="hide">Limpiar</button>
-                    <button type="submit">Buscar</button>
+                    <button id="btn-clean" type="button" class="hide">Clean</button>
+                    <button type="submit">Search</button>
                 </div>
             </form>
         </section>

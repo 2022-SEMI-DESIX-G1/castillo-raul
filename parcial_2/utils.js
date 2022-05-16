@@ -13,7 +13,7 @@
       });
     },
     getEvolutionChain: async (species)=>{
-      let response = [];
+      let response;
       try {
 
         const [pokemon] = await Promise.all([
