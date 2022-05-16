@@ -6,6 +6,7 @@
         "#pokemon-finder-search-type"
       ),
       pokemonFinderInput: document.querySelector("#pokemon-finder-query"),
+      pokemonFinderInputLabel: document.querySelector("#pokemon-finder-query-label"),
       pokemonFinderOutput: document.querySelector("#pokemon-finder-response"),
       pokemonFinderCleanBtn: document.querySelector("#btn-clean"),
       hiddenSvg: `<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,6 +25,10 @@
       App.htmlElements.pokemonFinderCleanBtn.addEventListener(
         "click",
         App.handlers.pokemonFinderCleanBtnOnClick
+      );
+      App.htmlElements.pokemonFinderSearchType.addEventListener(
+        "change",
+        App.handlers.pokemonFinderSearchTypeOnChange
       );
     },
     handlers: {
@@ -68,6 +73,8 @@
         const outputSection = App.htmlElements.pokemonFinderOutput;
         const cleanBtn= App.htmlElements.pokemonFinderCleanBtn
 
+        App.htmlElements.pokemonFinderInput.value = '';
+
         let haveHideClass = App.handlers.isHidden;
        
         if (!haveHideClass(outputSection)){
@@ -75,6 +82,12 @@
           cleanBtn.classList.add('hide');
         } 
       },
+      pokemonFinderSearchTypeOnChange: ()=>{
+        const label = App.htmlElements.pokemonFinderInputLabel;          
+        const searchType = App.htmlElements.pokemonFinderSearchType.value;
+
+        label.innerHTML = (searchType === 'pokemon') ? 'Pokemon' : 'Ability';
+      }
     },
     templates: {
       render: ({ searchType, responseToRender }) => {
@@ -95,11 +108,11 @@
         const evolutionChainSection = App.templates.evolutionChainCard({evolutions});
 
         return ` <h1 id="title-card">${name} (${id})</h1> 
-                 <div class="wrapper">
-                  ${spriteSection}
-                  ${weightHeightSection} 
-                    ${evolutionChainSection} 
-                    ${abilitiesSection}
+                 <div class="pokemon-info">
+                 ${spriteSection}
+                 ${weightHeightSection}
+                 ${evolutionChainSection} 
+                 ${abilitiesSection}
                  </div> `;
       },
       abilityCard: ({ id, name, pokemon }) => {
@@ -108,7 +121,9 @@
             `<li><a target="_blank" href="${pokemon.url}">${pokemon.name}
             </a>${isHidden ? App.htmlElements.hiddenSvg : ''}</li>`
         );
-        return ` <h1 id="title-card">${name} (${id})</h1><ul>${pokemonList.join("")}</ul> `;
+        return ` <h1 id="title-card">${name}</h1>
+                 <h3>Who can learn it?</h3> 
+                 <ul>${pokemonList.join("")}</ul> `;
       },
       spriteCard: ({sprites}) => {
         const {front_default: front, back_default: back } = sprites;
@@ -133,7 +148,7 @@
       abilitiesCard: ({abilities}) => {
         let abilitiesList = '<ul> ';
         abilities.forEach((item) => {
-           const {ability: {name}, is_hidden: isHidden, slot} = item;   
+           const {ability: {name}, is_hidden: isHidden} = item;   
            abilitiesList += ` <li>${name} ${isHidden ? App.htmlElements.hiddenSvg : ''}</li> `
         });
         abilitiesList += ' <ul>';
@@ -143,10 +158,16 @@
       },
       evolutionChainCard: ({evolutions}) => {
         let evolutionList = '<ul> ';
-        evolutions.forEach((item) => {
-           const {name, isBaby} = item;   
-           evolutionList += ` <li>${name} ${isBaby ? App.htmlElements.babySvg : ''}</li> `
-        });
+
+        if(evolutions.length){
+          evolutions.forEach((item) => {
+              const {name, isBaby} = item;   
+              evolutionList += ` <li>${name} ${isBaby ? App.htmlElements.babySvg : ''}</li> `
+          });
+        } else {
+          evolutionList += ` <li>${evolutions.name} ${evolutions.isBaby ? App.htmlElements.babySvg : ''}</li> `
+        }
+        
         evolutionList += ' <ul>';
 
         return ` <div> 
