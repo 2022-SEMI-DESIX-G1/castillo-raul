@@ -1,0 +1,47 @@
+:root{
+  --background-color: #031926;
+  --background-form: #f7f9f6;
+  --background-input: #e8e8e8;  
+  --background-btn: #1ba5f4;
+  --black: 900;
+  --bold: 700;
+  --medium: 500;
+  --regular: 400;
+  --light: 300;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;  
+  font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  background: var(--background-color);
+}
+
+.container {
+  margin: 0 26rem;
+}
+
+.card {
+  background-color: var(--background-form);
+  margin: 2rem 0 0;
+  padding: 2rem 3rem 2rem;
+  border-radius: 0.3rem;
+}
+
+.card:first-of-type {
+  padding-bottom: 4rem;
+}
+
+h1 {
+  margin: 0.4rem 0 0.9rem;
+}
+
+#title-card {
+  font-weight: var(--black);
+  margin: 0 0 1.5rem;
+  text-transform: capitalize;
+}

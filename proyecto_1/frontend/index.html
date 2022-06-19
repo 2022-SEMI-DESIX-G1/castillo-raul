@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyecto # 1 - Raul Castillo</title>
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Estilos -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <section class="card">
+        <form id="pokemon-form">
+          <h1>Pokemon Information</h1>
+          <div class="wrapper">
+            <label for="pokemon-input">Nombre:</label>
+            <input
+              type="checkbox"
+              name="check-input"
+              id="sprites-radio"
+              value="sprites"
+            />
+            <label for="sprites-radio">Sprites</label>
+            <input
+              type="checkbox"
+              name="check-input"
+              id="location-radio"
+              value="location"
+            />
+            <label for="location-radio">Location</label>
+            <input
+              type="checkbox"
+              name="check-input"
+              id="chain-radio"
+              value="chain"
+            />
+            <label for="chain-radio">Evolution Chain</label>
+          </div>
+          <div class="form-bottom">
+            <input id="pokemon-input" type="text" />
+            <button type="submit">Search</button>
+          </div>
+        </form>
+      </section>
+      <section id="pokemon-finder-response" class="card hide"></section>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="index.js"></script>
+  </body>
+</html>
