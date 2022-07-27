@@ -1,33 +1,39 @@
-import React from "react";
-import { useLocation, useParams } from "react-router-dom";
+import { useEffect, useRef } from "react";
 
 const Checkout = () => {
-  const { amount } = useParams();
-  const total = useLocation().state.total;
+  const paypal = useRef();
 
-  console.log(amount);
-  console.log(total);
-
-  const createOrder = (data, actions) => {
-    return actions.order.create({
-      purchase_units: [
-        {
-          amount: {
-            value: "0.01",
-          },
+  useEffect(() => {
+    window.paypal
+      .Buttons({
+        createOrder: (data, actions, err) => {
+          return actions.order.create({
+            intent: "CAPTURE",
+            purchase_units: [
+              {
+                description: "Cool looking table",
+                amount: {
+                  currency_code: "USD",
+                  value: 650.0,
+                },
+              },
+            ],
+          });
         },
-      ],
-    });
-  };
-  const onApprove = (data, actions) => {
-    return actions.order.capture();
-  };
+        onApprove: async (data, actions) => {
+          const order = await actions.order.capture();
+          console.log(order);
+        },
+        onError: (err) => {
+          console.log(err);
+        },
+      })
+      .render(paypal.current);
+  }, []);
   return (
-    <div>Checkout Page</div>
-    // <PayPalButton
-    //   createOrder={(data, actions) => createOrder(data, actions)}
-    //   onApprove={(data, actions) => onApprove(data, actions)}
-    // />
+    <div>
+      <div ref={paypal}></div>
+    </div>
   );
 };
 
