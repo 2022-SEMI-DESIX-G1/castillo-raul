@@ -26,7 +26,7 @@ const Cart = () => {
   return (
     <div className="home">
       <div className="product-conatiner">
-        <ListGroup>
+        <ListGroup style={{ margin: 10 }}>
           {cart.map((product) => (
             <ListGroup.Item key={product.id}>
               <Row>
@@ -78,6 +78,7 @@ const Cart = () => {
         {/* {checkout ? } */}
         <Button
           type="button"
+          className="button"
           disabled={cart.length === 0}
           onClick={() => {
             setCheckOut(true);

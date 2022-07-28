@@ -28,10 +28,12 @@ const Header = () => {
   } = CartState();
 
   return (
-    <Navbar bg="dark" variant="dark" style={{ height: 80 }}>
+    <Navbar variant="dark" style={{ height: 80, backgroundColor: "#b9557d" }}>
       <Container>
         <Navbar.Brand>
-          <Link to="home">SuperMarket</Link>
+          <Link to="home" style={{ fontSize: 30 }}>
+            SuperMarket
+          </Link>
         </Navbar.Brand>
         {!currentLocation ? (
           <>
@@ -50,7 +52,7 @@ const Header = () => {
             </Navbar.Text>
             <Nav>
               <Dropdown align={{ sm: "right" }}>
-                <Dropdown.Toggle variant="success">
+                <Dropdown.Toggle className="button">
                   <FaShoppingCart color="white" fontSize="25" />
                   <Badge bg="none">{cart.length}</Badge>
                 </Dropdown.Toggle>
@@ -82,7 +84,10 @@ const Header = () => {
                         </span>
                       ))}
                       <Link to="cart">
-                        <Button style={{ width: "95%", margin: "0 10px" }}>
+                        <Button
+                          style={{ width: "90%", margin: "0 10px" }}
+                          className="btn-product"
+                        >
                           Go To Cart!
                         </Button>
                       </Link>

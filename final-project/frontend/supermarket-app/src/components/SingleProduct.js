@@ -24,12 +24,13 @@ const SingleProduct = ({ product }) => {
               onClick={() => {
                 dispatch({ type: "REMOVE_FROM_CART", payload: product });
               }}
-              variant="danger"
+              variant="outline-danger"
             >
               Remove from cart
             </Button>
           ) : (
             <Button
+              className="btn-product"
               onClick={() => {
                 dispatch({ type: "ADD_TO_CART", payload: product });
               }}
