@@ -6,7 +6,6 @@ import Cart from "./components/Cart";
 import LandingPage from "./screens/landing-page/LandingPage";
 import LoginScreen from "./screens/login/LoginScreen";
 import RegisterScreen from "./screens/register/RegisterScreen";
-import Checkout from "./components/Checkout";
 
 function App() {
   return (
@@ -19,7 +18,6 @@ function App() {
           <Route path="cart" element={<Cart />} />
           <Route path="login" element={<LoginScreen />} />
           <Route path="register" element={<RegisterScreen />} />
-          <Route path="checkout/:amount" element={<Checkout />} />
         </Routes>
       </div>
     </BrowserRouter>
