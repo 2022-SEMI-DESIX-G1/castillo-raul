@@ -17,7 +17,7 @@ export const cartReducer = (state, action) => {
         ),
       };
     case "SET_PRODUCTS":
-      return { ...state, products: { ...action.payload } };
+      return state;
     default:
       return state;
   }

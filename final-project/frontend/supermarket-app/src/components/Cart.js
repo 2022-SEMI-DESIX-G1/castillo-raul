@@ -2,7 +2,6 @@ import { CartState } from "../context/Context";
 import { Button, Col, Form, Image, ListGroup, Row } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { AiFillDelete } from "react-icons/ai";
-import { Link } from "react-router-dom";
 import PayPal from "./PayPal";
 
 const Cart = () => {
@@ -76,7 +75,7 @@ const Cart = () => {
       <div className="filters summary">
         <span className="title">Subtotal ({cart.length}) items</span>
         <span style={{ fontWeight: 700, fontSize: 20 }}>Total: $ {total}</span>
-
+        {/* {checkout ? } */}
         <Button
           type="button"
           disabled={cart.length === 0}
@@ -86,10 +85,12 @@ const Cart = () => {
         >
           Want to Pay
         </Button>
-        {checkout && (
+        {checkout && total > 0 ? (
           <div className="mt-3">
             <PayPal total={total} />
           </div>
+        ) : (
+          ""
         )}
       </div>
     </div>

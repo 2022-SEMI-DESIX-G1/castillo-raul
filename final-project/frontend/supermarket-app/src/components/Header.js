@@ -92,7 +92,7 @@ const Header = () => {
                   )}
                 </Dropdown.Menu>
               </Dropdown>
-              {window.location.pathname === "/home" && <UserButton />}
+              {!currentLocation && <UserButton />}
             </Nav>
           </>
         ) : (

@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import CartState from "../context/Context";
+import { CartState } from "../context/Context";
 import Filters from "./Filters";
 import SingleProduct from "./SingleProduct";
 import "./styles.css";
@@ -10,9 +9,7 @@ const Home = () => {
     productState: { sort, searchQuery },
   } = CartState();
 
-  // const { products } = useContext(CartState);
-
-  // console.log({ products });
+  console.log(products);
 
   const transformProducts = () => {
     let sortedProducts = products;
