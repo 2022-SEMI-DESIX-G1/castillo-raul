@@ -9,7 +9,7 @@ const Filters = () => {
 
   return (
     <div className="filters">
-      <span className="title">Categories</span>
+      <span className="title">Filters</span>
       <span>
         <Form.Check
           inline
@@ -43,7 +43,7 @@ const Filters = () => {
         />
       </span>
       <Button
-        variant="light"
+        className="button"
         onClick={() =>
           productDispatch({
             type: "CLEAR_FILTERS",

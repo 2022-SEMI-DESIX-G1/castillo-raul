@@ -7,7 +7,7 @@ const UserButton = () => {
 
   return (
     <Dropdown style={{ marginLeft: "10px" }} align={{ sm: "right" }}>
-      <Dropdown.Toggle bg="none">
+      <Dropdown.Toggle className="button">
         <FaUserAlt color="white" fontSize="25" />
       </Dropdown.Toggle>
       <Dropdown.Menu style={{ minWidht: 370 }}>
