@@ -9,8 +9,6 @@ const Home = () => {
     productState: { sort, searchQuery },
   } = CartState();
 
-  console.log(products);
-
   const transformProducts = () => {
     let sortedProducts = products;
     if (sort) {

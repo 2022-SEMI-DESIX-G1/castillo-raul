@@ -74,7 +74,9 @@ const Cart = () => {
       </div>
       <div className="filters summary">
         <span className="title">Subtotal ({cart.length}) items</span>
-        <span style={{ fontWeight: 700, fontSize: 20 }}>Total: $ {total}</span>
+        <span style={{ fontWeight: 700, fontSize: 20 }}>
+          Total: $ {total.toFixed(2)}
+        </span>
         {/* {checkout ? } */}
         <Button
           type="button"
@@ -88,7 +90,7 @@ const Cart = () => {
         </Button>
         {checkout && total > 0 ? (
           <div className="mt-3">
-            <PayPal total={total} />
+            <PayPal total={total.toFixed(2)} />
           </div>
         ) : (
           ""
