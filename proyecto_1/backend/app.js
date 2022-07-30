@@ -17,75 +17,56 @@ app.get("/cache", function (req, res) {
 
 app.post("/pokemon/:name", async function (req, res) {
   const { name } = req.params;
-
   if (CACHE[name]) {
-    if (JSON.parse(CACHE[name]).time > new Date()) {
+    if (JSON.parse(CACHE[name]).time < new Date()) {
       delete CACHE[name];
-    } else {
-      return res.json({
-        name,
-        data: JSON.parse(CACHE[name]),
-        isCached: true
-      });
     }
+    return res.json({ name, data: JSON.parse(CACHE[name]), isCached: true });
   }
-
   if (ERROR[name]) {
     return res.json({ name, data: JSON.parse(ERROR[name]), isCached: true });
   }
-
   const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
-  let response;
+  let responseData;
   try {
     const { data } = await axios.get(url);
-    // console.log(data);
-    response = data;
-    data.time = new Date(Date.now() + 1000);
+    responseData = data;
+    data.time = new Date(Date.now() + 7000);
     CACHE[name] = JSON.stringify(data);
   } catch {
-    response = data;
+    responseData = data;
     ERROR[name] = JSON.stringify({ name, error: "Invalid pokemon." });
   }
-  res.json({ name, data: response, isCached: false });
+  res.json({ name, data: responseData, isCached: false });
 });
-
-app.get("/pokemon/:name", async function (req, res) {
-  console.log(req.params);
-
-  const { id } = req.params;
-
-  const speciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${id}/`;
-
-  const encountersUrl = `https://pokeapi.co/api/v2/pokemon/${id}/encounters`;
-
-  const speciesPokemon = await axios(speciesUrl);
-
-  const evolutions = await axios(speciesPokemon.data.evolution_chain.url);
-
-  let allEvolutions = getEvolutionPokemon(evolutions.data.chain);
-  let pokemonLocation = await axios(encountersUrl);
-  let locationArray = [];
-
-  pokemonLocation.data.forEach((data) =>
-    locationArray.push(data.location_area.name)
+app.get("/pokemon/:id", async function (req, res) {
+  const id = req.params.id;
+  const urlSpecies = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
+  const urlEncounters = `https://pokeapi.co/api/v2/pokemon/${id}/encounters`;
+  let lugarArray = [];
+  let lugaresPokemones = await axios(urlEncounters);
+  lugaresPokemones.data.forEach((data) =>
+    lugarArray.push(data.location_area.name)
   );
 
-  const evolutionList = allEvolutions.map(({ species }) => `${species.name}`);
+  const especies = await axios(urlSpecies);
+  const evolucion = await axios(especies.data.evolution_chain.url);
+  let evolutions = getEvolutionResponse(evolucion.data.chain);
 
-  res.json({ locations: locationArray, evolutions: evolutionList });
-});
+  const evolutionList = evolutions.map(({ species }) => `${species.name}`);
 
-const getEvolutionPokemon = (evolutions) => {
-  let evolutionChainArray = [evolutions];
-  while (evolutions.evolves_to.length > 0) {
-    for (let i = 0; i < evolutions.evolves_to.length; i++) {
-      evolutionChainArray.push(evolutions.evolves_to[i]);
+  function getEvolutionResponse(evolutions) {
+    let evolutionChain = [evolutions];
+    while (evolutions.evolves_to.length > 0) {
+      for (let i = 0; i < evolutions.evolves_to.length; i++) {
+        evolutionChain.push(evolutions.evolves_to[i]);
+      }
+      evolutions = evolutions.evolves_to[0];
     }
-    evolutions = evolutions.evolves_to[0];
-    evolutions.evolves_to.length + 1;
+    return evolutionChain;
   }
-  return evolutionChainArray;
-};
+  res.json({ evol: evolutionList, lug: lugarArray });
+});
 
 app.listen(PORT, () => {
   console.log(`Running on port ${PORT}...`);
