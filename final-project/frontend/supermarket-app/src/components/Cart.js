@@ -75,7 +75,7 @@ const Cart = () => {
       <div className="filters summary">
         <span className="title">Subtotal ({cart.length}) items</span>
         <span style={{ fontWeight: 700, fontSize: 20 }}>
-          Total: $ {total.toFixed(2)}
+          Total: $ {total}
         </span>
         {/* {checkout ? } */}
         <Button
